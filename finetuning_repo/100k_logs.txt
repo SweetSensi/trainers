@@ -1,0 +1,956 @@
+[2023-03-14 23:06:55,342] [WARNING] [runner.py:186:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
+[2023-03-14 23:06:55,422] [INFO] [runner.py:548:main] cmd = /usr/bin/python3 -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMCwgMSwgMiwgMywgNCwgNSwgNiwgN119 --master_addr=127.0.0.1 --master_port=29500 --enable_each_rank_log=None run_clm.py --deepspeed ds_config_stage1.json --model_name_or_path EleutherAI/gpt-j-6B --train_file train.csv --validation_file validation.csv --do_train --do_eval --bf16 --overwrite_cache --evaluation_strategy=steps --output_dir finetuned_100k --num_train_epochs 100 --eval_steps 4000 --gradient_accumulation_steps 1 --per_device_train_batch_size 8 --per_device_eval_batch_size 64 --use_fast_tokenizer False --learning_rate 1e-05 --warmup_steps 4000 --save_total_limit 1 --save_steps 4000 --save_strategy steps --tokenizer_name gpt2 --load_best_model_at_end=True --block_size=128 --weight_decay=0.1 --report_to=wandb --group_texts True
+[2023-03-14 23:06:57,107] [INFO] [launch.py:135:main] 0 NV_LIBNCCL_DEV_PACKAGE=libnccl-dev=2.13.4-1+cuda11.7
+[2023-03-14 23:06:57,107] [INFO] [launch.py:135:main] 0 NV_LIBNCCL_DEV_PACKAGE_VERSION=2.13.4-1
+[2023-03-14 23:06:57,107] [INFO] [launch.py:135:main] 0 NCCL_VERSION=2.13.4-1
+[2023-03-14 23:06:57,108] [INFO] [launch.py:135:main] 0 NV_LIBNCCL_DEV_PACKAGE_NAME=libnccl-dev
+[2023-03-14 23:06:57,108] [INFO] [launch.py:135:main] 0 NV_LIBNCCL_PACKAGE=libnccl2=2.13.4-1+cuda11.7
+[2023-03-14 23:06:57,108] [INFO] [launch.py:135:main] 0 NV_LIBNCCL_PACKAGE_NAME=libnccl2
+[2023-03-14 23:06:57,108] [INFO] [launch.py:135:main] 0 NV_LIBNCCL_PACKAGE_VERSION=2.13.4-1
+[2023-03-14 23:06:57,108] [INFO] [launch.py:142:main] WORLD INFO DICT: {'localhost': [0, 1, 2, 3, 4, 5, 6, 7]}
+[2023-03-14 23:06:57,108] [INFO] [launch.py:148:main] nnodes=1, num_local_procs=8, node_rank=0
+[2023-03-14 23:06:57,108] [INFO] [launch.py:161:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0, 1, 2, 3, 4, 5, 6, 7]})
+[2023-03-14 23:06:57,108] [INFO] [launch.py:162:main] dist_world_size=8
+[2023-03-14 23:06:57,108] [INFO] [launch.py:164:main] Setting CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+[2023-03-14 23:07:04,619] [INFO] [comm.py:657:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+03/14/2023 23:07:04 - WARNING - __main__ -   Process rank: 0, device: cuda:0, n_gpu: 1distributed training: True, 16-bits training: False
+03/14/2023 23:07:04 - WARNING - __main__ -   Process rank: 7, device: cuda:7, n_gpu: 1distributed training: True, 16-bits training: False
+03/14/2023 23:07:04 - WARNING - __main__ -   Process rank: 4, device: cuda:4, n_gpu: 1distributed training: True, 16-bits training: False
+03/14/2023 23:07:04 - INFO - __main__ -   Training/evaluation parameters TrainingArguments(
+_n_gpu=1,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+bf16=True,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_pin_memory=True,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=ds_config_stage1.json,
+disable_tqdm=False,
+do_eval=True,
+do_predict=False,
+do_train=True,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_steps=4000,
+evaluation_strategy=steps,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+greater_is_better=False,
+group_by_length=False,
+half_precision_backend=auto,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_inputs_for_metrics=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=1e-05,
+length_column_name=length,
+load_best_model_at_end=True,
+local_rank=0,
+log_level=passive,
+log_level_replica=passive,
+log_on_each_node=True,
+logging_dir=finetuned_100k/runs/Mar14_23-07-01_16c33ddaca50,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=500,
+logging_strategy=steps,
+lr_scheduler_type=linear,
+max_grad_norm=1.0,
+max_steps=-1,
+metric_for_best_model=loss,
+mp_parameters=,
+no_cuda=False,
+num_train_epochs=100.0,
+optim=adamw_hf,
+optim_args=None,
+output_dir=finetuned_100k,
+overwrite_output_dir=False,
+past_index=-1,
+per_device_eval_batch_size=64,
+per_device_train_batch_size=8,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['wandb'],
+resume_from_checkpoint=None,
+run_name=finetuned_100k,
+save_on_each_node=False,
+save_steps=4000,
+save_strategy=steps,
+save_total_limit=1,
+seed=42,
+sharded_ddp=[],
+skip_memory_metrics=True,
+tf32=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=4000,
+weight_decay=0.1,
+xpu_backend=None,
+)
+03/14/2023 23:07:04 - WARNING - __main__ -   Process rank: 2, device: cuda:2, n_gpu: 1distributed training: True, 16-bits training: False
+03/14/2023 23:07:04 - WARNING - __main__ -   Process rank: 3, device: cuda:3, n_gpu: 1distributed training: True, 16-bits training: False
+03/14/2023 23:07:04 - WARNING - __main__ -   Process rank: 6, device: cuda:6, n_gpu: 1distributed training: True, 16-bits training: False
+03/14/2023 23:07:04 - WARNING - __main__ -   Process rank: 5, device: cuda:5, n_gpu: 1distributed training: True, 16-bits training: False
+03/14/2023 23:07:04 - WARNING - __main__ -   Process rank: 1, device: cuda:1, n_gpu: 1distributed training: True, 16-bits training: False
+03/14/2023 23:07:04 - WARNING - datasets.builder -   Found cached dataset csv (/root/.cache/huggingface/datasets/csv/default-b5c28df75efd7c3a/0.0.0/6b34fb8fcf56f7c8ba51dc895bfa2bfbe43546f190a60fcf74bb5e8afdcc2317)
+03/14/2023 23:07:04 - WARNING - datasets.builder -   Found cached dataset csv (/root/.cache/huggingface/datasets/csv/default-b5c28df75efd7c3a/0.0.0/6b34fb8fcf56f7c8ba51dc895bfa2bfbe43546f190a60fcf74bb5e8afdcc2317)
+03/14/2023 23:07:04 - WARNING - datasets.builder -   Found cached dataset csv (/root/.cache/huggingface/datasets/csv/default-b5c28df75efd7c3a/0.0.0/6b34fb8fcf56f7c8ba51dc895bfa2bfbe43546f190a60fcf74bb5e8afdcc2317)
+03/14/2023 23:07:04 - WARNING - datasets.builder -   Found cached dataset csv (/root/.cache/huggingface/datasets/csv/default-b5c28df75efd7c3a/0.0.0/6b34fb8fcf56f7c8ba51dc895bfa2bfbe43546f190a60fcf74bb5e8afdcc2317)
+03/14/2023 23:07:04 - WARNING - datasets.builder -   Found cached dataset csv (/root/.cache/huggingface/datasets/csv/default-b5c28df75efd7c3a/0.0.0/6b34fb8fcf56f7c8ba51dc895bfa2bfbe43546f190a60fcf74bb5e8afdcc2317)
+03/14/2023 23:07:04 - WARNING - datasets.builder -   Found cached dataset csv (/root/.cache/huggingface/datasets/csv/default-b5c28df75efd7c3a/0.0.0/6b34fb8fcf56f7c8ba51dc895bfa2bfbe43546f190a60fcf74bb5e8afdcc2317)
+03/14/2023 23:07:04 - WARNING - datasets.builder -   Found cached dataset csv (/root/.cache/huggingface/datasets/csv/default-b5c28df75efd7c3a/0.0.0/6b34fb8fcf56f7c8ba51dc895bfa2bfbe43546f190a60fcf74bb5e8afdcc2317)
+03/14/2023 23:07:04 - WARNING - datasets.builder -   Found cached dataset csv (/root/.cache/huggingface/datasets/csv/default-b5c28df75efd7c3a/0.0.0/6b34fb8fcf56f7c8ba51dc895bfa2bfbe43546f190a60fcf74bb5e8afdcc2317)
+03/14/2023 23:07:05 - INFO - __main__ -   Setting `block_size` to 128
+[2023-03-15 01:14:24,236] [WARNING] [config_utils.py:67:_process_deprecated_field] Config parameter cpu_offload is deprecated use offload_optimizer instead
+03/15/2023 01:14:25 - INFO - __main__ -   Grouping texts together
+[2023-03-15 01:14:25,194] [INFO] [logging.py:68:log_dist] [Rank 0] DeepSpeed info: version=0.8.0+bf6b9802, git-hash=bf6b9802, git-branch=HEAD
+[2023-03-15 01:14:25,198] [WARNING] [config_utils.py:67:_process_deprecated_field] Config parameter cpu_offload is deprecated use offload_optimizer instead
+[2023-03-15 01:14:28,009] [WARNING] [config_utils.py:67:_process_deprecated_field] Config parameter cpu_offload is deprecated use offload_optimizer instead
+[2023-03-15 01:14:30,910] [WARNING] [config_utils.py:67:_process_deprecated_field] Config parameter cpu_offload is deprecated use offload_optimizer instead
+[2023-03-15 01:14:44,733] [WARNING] [config_utils.py:67:_process_deprecated_field] Config parameter cpu_offload is deprecated use offload_optimizer instead
+[2023-03-15 01:15:25,030] [WARNING] [config_utils.py:67:_process_deprecated_field] Config parameter cpu_offload is deprecated use offload_optimizer instead
+[2023-03-15 01:15:31,805] [WARNING] [config_utils.py:67:_process_deprecated_field] Config parameter cpu_offload is deprecated use offload_optimizer instead
+[2023-03-15 01:15:36,900] [WARNING] [config_utils.py:67:_process_deprecated_field] Config parameter cpu_offload is deprecated use offload_optimizer instead
+[2023-03-15 01:15:52,689] [INFO] [logging.py:68:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+Adam Optimizer #0 is created with AVX2 arithmetic capability.
+Config: alpha=0.000010, betas=(0.900000, 0.999000), weight_decay=0.100000, adam_w=1
+[2023-03-15 01:15:55,715] [INFO] [logging.py:68:log_dist] [Rank 0] Using DeepSpeed Optimizer param name adamw as basic optimizer
+[2023-03-15 01:15:55,734] [INFO] [logging.py:68:log_dist] [Rank 0] DeepSpeed Basic Optimizer = DeepSpeedCPUAdam
+[2023-03-15 01:15:55,734] [INFO] [utils.py:52:is_zero_supported_optimizer] Checking ZeRO support for optimizer=DeepSpeedCPUAdam type=<class 'deepspeed.ops.adam.cpu_adam.DeepSpeedCPUAdam'>
+[2023-03-15 01:15:55,734] [INFO] [logging.py:68:log_dist] [Rank 0] Creating fp16 ZeRO stage 1 optimizer
+[2023-03-15 01:15:55,735] [INFO] [stage_1_and_2.py:141:__init__] Reduce bucket size 10000000000
+[2023-03-15 01:15:55,735] [INFO] [stage_1_and_2.py:142:__init__] Allgather bucket size 10000000000
+[2023-03-15 01:15:55,735] [INFO] [stage_1_and_2.py:143:__init__] CPU Offload: True
+[2023-03-15 01:15:55,735] [INFO] [stage_1_and_2.py:144:__init__] Round robin gradient partitioning: False
+Rank: 7 partition count [8] and sizes[(756213900, False)] 
+Rank: 3 partition count [8] and sizes[(756213900, False)] 
+Rank: 0 partition count [8] and sizes[(756213900, False)] 
+Rank: 5 partition count [8] and sizes[(756213900, False)] 
+Rank: 6 partition count [8] and sizes[(756213900, False)] 
+Rank: 1 partition count [8] and sizes[(756213900, False)] 
+Rank: 2 partition count [8] and sizes[(756213900, False)] 
+Rank: 4 partition count [8] and sizes[(756213900, False)] 
+[2023-03-15 01:16:38,191] [INFO] [utils.py:831:see_memory_usage] Before initializing optimizer states
+[2023-03-15 01:16:38,192] [INFO] [utils.py:832:see_memory_usage] MA 11.76 GB         Max_MA 11.76 GB         CA 11.77 GB         Max_CA 12 GB 
+[2023-03-15 01:16:38,192] [INFO] [utils.py:840:see_memory_usage] CPU Virtual Memory:  used = 84.99 GB, percent = 4.8%
+[2023-03-15 01:16:44,844] [INFO] [utils.py:831:see_memory_usage] After initializing optimizer states
+[2023-03-15 01:16:44,845] [INFO] [utils.py:832:see_memory_usage] MA 11.76 GB         Max_MA 11.76 GB         CA 11.77 GB         Max_CA 12 GB 
+[2023-03-15 01:16:44,846] [INFO] [utils.py:840:see_memory_usage] CPU Virtual Memory:  used = 160.38 GB, percent = 9.1%
+[2023-03-15 01:16:44,846] [INFO] [stage_1_and_2.py:522:__init__] optimizer state initialized
+[2023-03-15 01:16:45,045] [INFO] [utils.py:831:see_memory_usage] After initializing ZeRO optimizer
+[2023-03-15 01:16:45,046] [INFO] [utils.py:832:see_memory_usage] MA 11.76 GB         Max_MA 11.76 GB         CA 11.77 GB         Max_CA 12 GB 
+[2023-03-15 01:16:45,046] [INFO] [utils.py:840:see_memory_usage] CPU Virtual Memory:  used = 156.72 GB, percent = 8.8%
+[2023-03-15 01:16:45,048] [INFO] [logging.py:68:log_dist] [Rank 0] DeepSpeed Final Optimizer = adamw
+[2023-03-15 01:16:45,048] [INFO] [logging.py:68:log_dist] [Rank 0] DeepSpeed using configured LR scheduler = WarmupLR
+[2023-03-15 01:16:45,048] [INFO] [logging.py:68:log_dist] [Rank 0] DeepSpeed LR Scheduler = <deepspeed.runtime.lr_schedules.WarmupLR object at 0x7f9c3f2adca0>
+[2023-03-15 01:16:45,049] [INFO] [logging.py:68:log_dist] [Rank 0] step=0, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-15 01:16:45,050] [INFO] [config.py:1008:print] DeepSpeedEngine configuration:
+[2023-03-15 01:16:45,050] [INFO] [config.py:1012:print]   activation_checkpointing_config  {
+    "partition_activations": false, 
+    "contiguous_memory_optimization": false, 
+    "cpu_checkpointing": false, 
+    "number_checkpoints": null, 
+    "synchronize_checkpoint_boundary": false, 
+    "profile": false
+}
+[2023-03-15 01:16:45,050] [INFO] [config.py:1012:print]   aio_config ................... {'block_size': 1048576, 'queue_depth': 8, 'thread_count': 1, 'single_submit': False, 'overlap_events': True}
+[2023-03-15 01:16:45,050] [INFO] [config.py:1012:print]   amp_enabled .................. False
+[2023-03-15 01:16:45,050] [INFO] [config.py:1012:print]   amp_params ................... False
+[2023-03-15 01:16:45,050] [INFO] [config.py:1012:print]   autotuning_config ............ {
+    "enabled": false, 
+    "start_step": null, 
+    "end_step": null, 
+    "metric_path": null, 
+    "arg_mappings": null, 
+    "metric": "throughput", 
+    "model_info": null, 
+    "results_dir": "autotuning_results", 
+    "exps_dir": "autotuning_exps", 
+    "overwrite": true, 
+    "fast": true, 
+    "start_profile_step": 3, 
+    "end_profile_step": 5, 
+    "tuner_type": "gridsearch", 
+    "tuner_early_stopping": 5, 
+    "tuner_num_trials": 50, 
+    "model_info_path": null, 
+    "mp_size": 1, 
+    "max_train_batch_size": null, 
+    "min_train_batch_size": 1, 
+    "max_train_micro_batch_size_per_gpu": 1.024000e+03, 
+    "min_train_micro_batch_size_per_gpu": 1, 
+    "num_tuning_micro_batch_sizes": 3
+}
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   bfloat16_enabled ............. True
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   checkpoint_parallel_write_pipeline  False
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   checkpoint_tag_validation_enabled  True
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   checkpoint_tag_validation_fail  False
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   comms_config ................. <deepspeed.comm.config.DeepSpeedCommsConfig object at 0x7f9c4930df40>
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   communication_data_type ...... None
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   compression_config ........... {'weight_quantization': {'shared_parameters': {'enabled': False, 'quantizer_kernel': False, 'schedule_offset': 0, 'quantize_groups': 1, 'quantize_verbose': False, 'quantization_type': 'symmetric', 'quantize_weight_in_forward': False, 'rounding': 'nearest', 'fp16_mixed_quantize': False, 'quantize_change_ratio': 0.001}, 'different_groups': {}}, 'activation_quantization': {'shared_parameters': {'enabled': False, 'quantization_type': 'symmetric', 'range_calibration': 'dynamic', 'schedule_offset': 1000}, 'different_groups': {}}, 'sparse_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'row_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'head_pruning': {'shared_parameters': {'enabled': False, 'method': 'topk', 'schedule_offset': 1000}, 'different_groups': {}}, 'channel_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'layer_reduction': {'enabled': False}}
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   curriculum_enabled_legacy .... False
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   curriculum_params_legacy ..... False
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   data_efficiency_config ....... {'enabled': False, 'seed': 1234, 'data_sampling': {'enabled': False, 'num_epochs': 1000, 'num_workers': 0, 'curriculum_learning': {'enabled': False}}, 'data_routing': {'enabled': False, 'random_ltd': {'enabled': False, 'layer_token_lr_schedule': {'enabled': False}}}}
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   data_efficiency_enabled ...... False
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   dataloader_drop_last ......... False
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   disable_allgather ............ False
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   dump_state ................... False
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   dynamic_loss_scale_args ...... None
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   eigenvalue_enabled ........... False
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   eigenvalue_gas_boundary_resolution  1
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   eigenvalue_layer_name ........ bert.encoder.layer
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   eigenvalue_layer_num ......... 0
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   eigenvalue_max_iter .......... 100
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   eigenvalue_stability ......... 1e-06
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   eigenvalue_tol ............... 0.01
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   eigenvalue_verbose ........... False
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   elasticity_enabled ........... False
+[2023-03-15 01:16:45,051] [INFO] [config.py:1012:print]   flops_profiler_config ........ {
+    "enabled": false, 
+    "profile_step": 1, 
+    "module_depth": -1, 
+    "top_modules": 1, 
+    "detailed": true, 
+    "output_file": null
+}
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   fp16_auto_cast ............... None
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   fp16_enabled ................. False
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   fp16_master_weights_and_gradients  False
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   global_rank .................. 0
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   grad_accum_dtype ............. None
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   gradient_accumulation_steps .. 1
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   gradient_clipping ............ 1.0
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   gradient_predivide_factor .... 1.0
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   initial_dynamic_scale ........ 1
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   load_universal_checkpoint .... False
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   loss_scale ................... 1.0
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   memory_breakdown ............. False
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   monitor_config ............... <deepspeed.monitor.config.DeepSpeedMonitorConfig object at 0x7f9c3f29b220>
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   nebula_config ................ {
+    "enabled": false, 
+    "persistent_storage_path": null, 
+    "persistent_time_interval": 100, 
+    "num_of_version_in_retention": 2, 
+    "enable_nebula_load": true, 
+    "load_path": null
+}
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   optimizer_legacy_fusion ...... False
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   optimizer_name ............... adamw
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   optimizer_params ............. {'lr': 1e-05, 'betas': [0.9, 0.999], 'eps': 1e-08, 'weight_decay': 0.1}
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   pipeline ..................... {'stages': 'auto', 'partition': 'best', 'seed_layers': False, 'activation_checkpoint_interval': 0}
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   pld_enabled .................. False
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   pld_params ................... False
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   prescale_gradients ........... False
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   scheduler_name ............... WarmupLR
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   scheduler_params ............. {'warmup_min_lr': 0, 'warmup_max_lr': 1e-05, 'warmup_num_steps': 4000}
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   sparse_attention ............. None
+[2023-03-15 01:16:45,052] [INFO] [config.py:1012:print]   sparse_gradients_enabled ..... False
+[2023-03-15 01:16:45,053] [INFO] [config.py:1012:print]   steps_per_print .............. 2000
+[2023-03-15 01:16:45,053] [INFO] [config.py:1012:print]   train_batch_size ............. 64
+[2023-03-15 01:16:45,053] [INFO] [config.py:1012:print]   train_micro_batch_size_per_gpu  8
+[2023-03-15 01:16:45,053] [INFO] [config.py:1012:print]   use_node_local_storage ....... False
+[2023-03-15 01:16:45,053] [INFO] [config.py:1012:print]   wall_clock_breakdown ......... False
+[2023-03-15 01:16:45,053] [INFO] [config.py:1012:print]   world_size ................... 8
+[2023-03-15 01:16:45,053] [INFO] [config.py:1012:print]   zero_allow_untested_optimizer  False
+[2023-03-15 01:16:45,053] [INFO] [config.py:1012:print]   zero_config .................. stage=1 contiguous_gradients=True reduce_scatter=True reduce_bucket_size=10000000000 allgather_partitions=True allgather_bucket_size=10000000000 overlap_comm=True load_from_fp32_weights=True elastic_checkpoint=False offload_param=None offload_optimizer=DeepSpeedZeroOffloadOptimizerConfig(device='cpu', nvme_path=None, buffer_count=4, pin_memory=False, pipeline=False, pipeline_read=False, pipeline_write=False, fast_init=False) sub_group_size=1,000,000,000 cpu_offload_param=None cpu_offload_use_pin_memory=None prefetch_bucket_size=50,000,000 param_persistence_threshold=100,000 model_persistence_threshold=sys.maxsize max_live_parameters=1,000,000,000 max_reuse_distance=1,000,000,000 gather_16bit_weights_on_model_save=False stage3_gather_fp16_weights_on_model_save=False ignore_unused_parameters=True legacy_stage1=False round_robin_gradients=True
+[2023-03-15 01:16:45,053] [INFO] [config.py:1012:print]   zero_enabled ................. True
+[2023-03-15 01:16:45,053] [INFO] [config.py:1012:print]   zero_optimization_stage ...... 1
+[2023-03-15 01:16:45,053] [INFO] [config.py:997:print_user_config]   json = {
+    "fp16": {
+        "enabled": false, 
+        "loss_scale": 0, 
+        "loss_scale_window": 1000, 
+        "initial_scale_power": 16, 
+        "hysteresis": 2, 
+        "min_loss_scale": 1
+    }, 
+    "bf16": {
+        "enabled": true
+    }, 
+    "optimizer": {
+        "type": "AdamW", 
+        "params": {
+            "lr": 1e-05, 
+            "betas": [0.9, 0.999], 
+            "eps": 1e-08, 
+            "weight_decay": 0.1
+        }
+    }, 
+    "scheduler": {
+        "type": "WarmupLR", 
+        "params": {
+            "warmup_min_lr": 0, 
+            "warmup_max_lr": 1e-05, 
+            "warmup_num_steps": 4.000000e+03
+        }
+    }, 
+    "zero_optimization": {
+        "stage": 1, 
+        "allgather_partitions": true, 
+        "allgather_bucket_size": 1.000000e+10, 
+        "overlap_comm": true, 
+        "reduce_scatter": true, 
+        "reduce_bucket_size": 1.000000e+10, 
+        "contiguous_gradients": true, 
+        "round_robin_gradients": true, 
+        "cpu_offload": true
+    }, 
+    "gradient_accumulation_steps": 1, 
+    "gradient_clipping": 1.0, 
+    "steps_per_print": 2.000000e+03, 
+    "train_batch_size": 64, 
+    "train_micro_batch_size_per_gpu": 8, 
+    "wall_clock_breakdown": false
+}
+03/15/2023 01:16:46 - ERROR - wandb.sdk.lib.git -   git root error: Cmd('git') failed due to: exit code(128)
+  cmdline: git rev-parse --show-toplevel
+  stderr: 'fatal: detected dubious ownership in repository at '/workspace'
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory /workspace'
+{'loss': 2.2096, 'learning_rate': 7.492851342936674e-06, 'epoch': 0.01}
+{'loss': 2.1902, 'learning_rate': 8.328567561957783e-06, 'epoch': 0.03}
+{'loss': 2.1911, 'learning_rate': 8.817430211329601e-06, 'epoch': 0.04}
+[2023-03-15 03:51:38,895] [INFO] [logging.py:68:log_dist] [Rank 0] step=2000, skipped=0, lr=[9.164283780978892e-06], mom=[[0.9, 0.999]]
+[2023-03-15 03:51:39,065] [INFO] [timer.py:196:stop] epoch=0/micro_step=2000/global_step=2000, RunningAvgSamplesPerSec=13.799890960229135, CurrSamplesPerSec=13.484157253533473, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.1869, 'learning_rate': 9.164283780978892e-06, 'epoch': 0.05}
+{'loss': 2.1896, 'learning_rate': 9.433324311234827e-06, 'epoch': 0.06}
+{'loss': 2.184, 'learning_rate': 9.653146430350708e-06, 'epoch': 0.07}
+{'loss': 2.182, 'learning_rate': 9.839003383848953e-06, 'epoch': 0.09}
+[2023-03-15 06:25:27,772] [INFO] [logging.py:68:log_dist] [Rank 0] step=4000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-15 06:25:27,976] [INFO] [timer.py:196:stop] epoch=0/micro_step=4000/global_step=4000, RunningAvgSamplesPerSec=13.844967001197153, CurrSamplesPerSec=13.887105399502893, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.1939, 'learning_rate': 1e-05, 'epoch': 0.1}
+{'eval_loss': 2.1945085525512695, 'eval_runtime': 780.9829, 'eval_samples_per_second': 819.48, 'eval_steps_per_second': 1.601, 'epoch': 0.1}
+[2023-03-15 06:39:09,323] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step4000 is begin to save!
+[2023-03-15 06:39:09,330] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-4000/global_step4000/mp_rank_00_model_states.pt
+[2023-03-15 06:39:09,330] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-4000/global_step4000/mp_rank_00_model_states.pt...
+[2023-03-15 06:39:28,403] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-4000/global_step4000/mp_rank_00_model_states.pt.
+[2023-03-15 06:39:28,408] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-4000/global_step4000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-15 06:39:43,501] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-4000/global_step4000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-15 06:39:43,503] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-4000/global_step4000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-15 06:39:43,504] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step4000 is ready now!
+{'loss': 2.1922, 'learning_rate': 1e-05, 'epoch': 0.11}
+{'loss': 2.1945, 'learning_rate': 1e-05, 'epoch': 0.12}
+{'loss': 2.199, 'learning_rate': 1e-05, 'epoch': 0.14}
+[2023-03-15 09:11:51,989] [INFO] [logging.py:68:log_dist] [Rank 0] step=6000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-15 09:11:52,148] [INFO] [timer.py:196:stop] epoch=0/micro_step=6000/global_step=6000, RunningAvgSamplesPerSec=13.910500086805294, CurrSamplesPerSec=13.986387165527088, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.1973, 'learning_rate': 1e-05, 'epoch': 0.15}
+{'loss': 2.1933, 'learning_rate': 1e-05, 'epoch': 0.16}
+{'loss': 2.1969, 'learning_rate': 1e-05, 'epoch': 0.17}
+{'loss': 2.1955, 'learning_rate': 1e-05, 'epoch': 0.19}
+[2023-03-15 11:44:24,620] [INFO] [logging.py:68:log_dist] [Rank 0] step=8000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-15 11:44:24,785] [INFO] [timer.py:196:stop] epoch=0/micro_step=8000/global_step=8000, RunningAvgSamplesPerSec=13.934206752647306, CurrSamplesPerSec=14.133420186576519, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.1976, 'learning_rate': 1e-05, 'epoch': 0.2}
+{'eval_loss': 2.1950719356536865, 'eval_runtime': 780.4941, 'eval_samples_per_second': 819.993, 'eval_steps_per_second': 1.602, 'epoch': 0.2}
+[2023-03-15 11:58:27,785] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step8000 is begin to save!
+[2023-03-15 11:58:27,792] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-8000/global_step8000/mp_rank_00_model_states.pt
+[2023-03-15 11:58:27,792] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-8000/global_step8000/mp_rank_00_model_states.pt...
+[2023-03-15 11:58:45,087] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-8000/global_step8000/mp_rank_00_model_states.pt.
+[2023-03-15 11:58:45,091] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-8000/global_step8000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-15 11:59:00,491] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-8000/global_step8000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-15 11:59:00,493] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-8000/global_step8000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-15 11:59:00,493] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step8000 is ready now!
+{'loss': 2.1963, 'learning_rate': 1e-05, 'epoch': 0.21}
+{'loss': 2.1956, 'learning_rate': 1e-05, 'epoch': 0.23}
+{'loss': 2.1904, 'learning_rate': 1e-05, 'epoch': 0.24}
+[2023-03-15 14:30:14,069] [INFO] [logging.py:68:log_dist] [Rank 0] step=10000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-15 14:30:14,187] [INFO] [timer.py:196:stop] epoch=0/micro_step=10000/global_step=10000, RunningAvgSamplesPerSec=13.972679916991442, CurrSamplesPerSec=13.902720020716668, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.1888, 'learning_rate': 1e-05, 'epoch': 0.25}
+{'loss': 2.1886, 'learning_rate': 1e-05, 'epoch': 0.26}
+{'loss': 2.1934, 'learning_rate': 1e-05, 'epoch': 0.28}
+{'loss': 2.1899, 'learning_rate': 1e-05, 'epoch': 0.29}
+[2023-03-15 17:02:03,012] [INFO] [logging.py:68:log_dist] [Rank 0] step=12000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-15 17:02:03,171] [INFO] [timer.py:196:stop] epoch=0/micro_step=12000/global_step=12000, RunningAvgSamplesPerSec=13.989252328553203, CurrSamplesPerSec=13.948906872842109, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.1978, 'learning_rate': 1e-05, 'epoch': 0.3}
+{'eval_loss': 2.1908836364746094, 'eval_runtime': 780.2697, 'eval_samples_per_second': 820.229, 'eval_steps_per_second': 1.602, 'epoch': 0.3}
+[2023-03-15 17:15:37,442] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step12000 is begin to save!
+[2023-03-15 17:15:37,448] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-12000/global_step12000/mp_rank_00_model_states.pt
+[2023-03-15 17:15:37,448] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-12000/global_step12000/mp_rank_00_model_states.pt...
+[2023-03-15 17:15:55,108] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-12000/global_step12000/mp_rank_00_model_states.pt.
+[2023-03-15 17:15:55,112] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-12000/global_step12000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-15 17:16:09,589] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-12000/global_step12000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-15 17:16:09,589] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-12000/global_step12000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-15 17:16:09,590] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step12000 is ready now!
+{'loss': 2.1891, 'learning_rate': 1e-05, 'epoch': 0.31}
+{'loss': 2.1838, 'learning_rate': 1e-05, 'epoch': 0.33}
+{'loss': 2.1932, 'learning_rate': 1e-05, 'epoch': 0.34}
+[2023-03-15 19:49:52,169] [INFO] [logging.py:68:log_dist] [Rank 0] step=14000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-15 19:49:52,298] [INFO] [timer.py:196:stop] epoch=0/micro_step=14000/global_step=14000, RunningAvgSamplesPerSec=13.982137623532026, CurrSamplesPerSec=14.303749122785517, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.184, 'learning_rate': 1e-05, 'epoch': 0.35}
+{'loss': 2.1932, 'learning_rate': 1e-05, 'epoch': 0.36}
+{'loss': 2.1898, 'learning_rate': 1e-05, 'epoch': 0.38}
+{'loss': 2.1929, 'learning_rate': 1e-05, 'epoch': 0.39}
+[2023-03-15 22:22:33,063] [INFO] [logging.py:68:log_dist] [Rank 0] step=16000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-15 22:22:33,161] [INFO] [timer.py:196:stop] epoch=0/micro_step=16000/global_step=16000, RunningAvgSamplesPerSec=13.983551636657136, CurrSamplesPerSec=13.874692002105325, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.1861, 'learning_rate': 1e-05, 'epoch': 0.4}
+{'eval_loss': 2.187950849533081, 'eval_runtime': 780.1646, 'eval_samples_per_second': 820.34, 'eval_steps_per_second': 1.602, 'epoch': 0.4}
+[2023-03-15 22:36:11,069] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step16000 is begin to save!
+[2023-03-15 22:36:11,076] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-16000/global_step16000/mp_rank_00_model_states.pt
+[2023-03-15 22:36:11,076] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-16000/global_step16000/mp_rank_00_model_states.pt...
+[2023-03-15 22:36:30,073] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-16000/global_step16000/mp_rank_00_model_states.pt.
+[2023-03-15 22:36:30,076] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-16000/global_step16000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-15 22:36:45,052] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-16000/global_step16000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-15 22:36:45,053] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-16000/global_step16000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-15 22:36:45,053] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step16000 is ready now!
+{'loss': 2.1923, 'learning_rate': 1e-05, 'epoch': 0.41}
+{'loss': 2.191, 'learning_rate': 1e-05, 'epoch': 0.42}
+{'loss': 2.1856, 'learning_rate': 1e-05, 'epoch': 0.44}
+[2023-03-16 01:10:01,915] [INFO] [logging.py:68:log_dist] [Rank 0] step=18000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-16 01:10:02,023] [INFO] [timer.py:196:stop] epoch=0/micro_step=18000/global_step=18000, RunningAvgSamplesPerSec=13.980890111712952, CurrSamplesPerSec=14.271413556828318, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.1907, 'learning_rate': 1e-05, 'epoch': 0.45}
+{'loss': 2.1939, 'learning_rate': 1e-05, 'epoch': 0.46}
+{'loss': 2.1831, 'learning_rate': 1e-05, 'epoch': 0.47}
+{'loss': 2.1849, 'learning_rate': 1e-05, 'epoch': 0.49}
+[2023-03-16 03:42:14,354] [INFO] [logging.py:68:log_dist] [Rank 0] step=20000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-16 03:42:14,484] [INFO] [timer.py:196:stop] epoch=0/micro_step=20000/global_step=20000, RunningAvgSamplesPerSec=13.986472323330146, CurrSamplesPerSec=13.81498953796868, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.1902, 'learning_rate': 1e-05, 'epoch': 0.5}
+{'eval_loss': 2.184988260269165, 'eval_runtime': 780.5995, 'eval_samples_per_second': 819.883, 'eval_steps_per_second': 1.601, 'epoch': 0.5}
+[2023-03-16 03:56:08,514] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step20000 is begin to save!
+[2023-03-16 03:56:08,521] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-20000/global_step20000/mp_rank_00_model_states.pt
+[2023-03-16 03:56:08,521] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-20000/global_step20000/mp_rank_00_model_states.pt...
+[2023-03-16 03:56:45,818] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-20000/global_step20000/mp_rank_00_model_states.pt.
+[2023-03-16 03:56:45,823] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-20000/global_step20000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-16 03:56:59,789] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-20000/global_step20000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-16 03:56:59,790] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-20000/global_step20000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-16 03:56:59,791] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step20000 is ready now!
+{'loss': 2.1841, 'learning_rate': 1e-05, 'epoch': 0.51}
+{'loss': 2.1823, 'learning_rate': 1e-05, 'epoch': 0.53}
+{'loss': 2.1863, 'learning_rate': 1e-05, 'epoch': 0.54}
+[2023-03-16 06:30:40,228] [INFO] [logging.py:68:log_dist] [Rank 0] step=22000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-16 06:30:40,343] [INFO] [timer.py:196:stop] epoch=0/micro_step=22000/global_step=22000, RunningAvgSamplesPerSec=13.980977665821609, CurrSamplesPerSec=14.288040249053848, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.1882, 'learning_rate': 1e-05, 'epoch': 0.55}
+{'loss': 2.1828, 'learning_rate': 1e-05, 'epoch': 0.56}
+{'loss': 2.1808, 'learning_rate': 1e-05, 'epoch': 0.57}
+{'loss': 2.1828, 'learning_rate': 1e-05, 'epoch': 0.59}
+[2023-03-16 09:03:22,099] [INFO] [logging.py:68:log_dist] [Rank 0] step=24000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-16 09:03:22,229] [INFO] [timer.py:196:stop] epoch=0/micro_step=24000/global_step=24000, RunningAvgSamplesPerSec=13.98186604674224, CurrSamplesPerSec=14.117405113486, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.1812, 'learning_rate': 1e-05, 'epoch': 0.6}
+{'eval_loss': 2.182368040084839, 'eval_runtime': 779.9641, 'eval_samples_per_second': 820.551, 'eval_steps_per_second': 1.603, 'epoch': 0.6}
+[2023-03-16 09:17:09,480] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step24000 is begin to save!
+[2023-03-16 09:17:09,486] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-24000/global_step24000/mp_rank_00_model_states.pt
+[2023-03-16 09:17:09,486] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-24000/global_step24000/mp_rank_00_model_states.pt...
+[2023-03-16 09:17:45,581] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-24000/global_step24000/mp_rank_00_model_states.pt.
+[2023-03-16 09:17:45,586] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-24000/global_step24000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-16 09:18:00,229] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-24000/global_step24000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-16 09:18:00,230] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-24000/global_step24000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-16 09:18:00,231] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step24000 is ready now!
+{'loss': 2.1729, 'learning_rate': 1e-05, 'epoch': 0.61}
+{'loss': 2.1848, 'learning_rate': 1e-05, 'epoch': 0.62}
+{'loss': 2.1706, 'learning_rate': 1e-05, 'epoch': 0.64}
+[2023-03-16 11:51:31,766] [INFO] [logging.py:68:log_dist] [Rank 0] step=26000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-16 11:51:31,920] [INFO] [timer.py:196:stop] epoch=0/micro_step=26000/global_step=26000, RunningAvgSamplesPerSec=13.978301385803725, CurrSamplesPerSec=13.982443620795378, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.1775, 'learning_rate': 1e-05, 'epoch': 0.65}
+{'loss': 2.1834, 'learning_rate': 1e-05, 'epoch': 0.66}
+{'loss': 2.186, 'learning_rate': 1e-05, 'epoch': 0.68}
+{'loss': 2.1787, 'learning_rate': 1e-05, 'epoch': 0.69}
+[2023-03-16 14:23:47,077] [INFO] [logging.py:68:log_dist] [Rank 0] step=28000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-16 14:23:47,209] [INFO] [timer.py:196:stop] epoch=0/micro_step=28000/global_step=28000, RunningAvgSamplesPerSec=13.982159794064886, CurrSamplesPerSec=13.780400841704951, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.1716, 'learning_rate': 1e-05, 'epoch': 0.7}
+{'eval_loss': 2.178955554962158, 'eval_runtime': 780.8873, 'eval_samples_per_second': 819.58, 'eval_steps_per_second': 1.601, 'epoch': 0.7}
+[2023-03-16 14:37:40,645] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step28000 is begin to save!
+[2023-03-16 14:37:40,653] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-28000/global_step28000/mp_rank_00_model_states.pt
+[2023-03-16 14:37:40,654] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-28000/global_step28000/mp_rank_00_model_states.pt...
+[2023-03-16 14:38:15,218] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-28000/global_step28000/mp_rank_00_model_states.pt.
+[2023-03-16 14:38:15,223] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-28000/global_step28000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-16 14:38:33,696] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-28000/global_step28000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-16 14:38:33,698] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-28000/global_step28000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-16 14:38:33,698] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step28000 is ready now!
+{'loss': 2.1775, 'learning_rate': 1e-05, 'epoch': 0.71}
+{'loss': 2.1792, 'learning_rate': 1e-05, 'epoch': 0.72}
+{'loss': 2.1777, 'learning_rate': 1e-05, 'epoch': 0.74}
+[2023-03-16 17:12:10,589] [INFO] [logging.py:68:log_dist] [Rank 0] step=30000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-16 17:12:10,723] [INFO] [timer.py:196:stop] epoch=0/micro_step=30000/global_step=30000, RunningAvgSamplesPerSec=13.97909848554786, CurrSamplesPerSec=13.709720808076186, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.1723, 'learning_rate': 1e-05, 'epoch': 0.75}
+{'loss': 2.1786, 'learning_rate': 1e-05, 'epoch': 0.76}
+{'loss': 2.1783, 'learning_rate': 1e-05, 'epoch': 0.78}
+{'loss': 2.1682, 'learning_rate': 1e-05, 'epoch': 0.79}
+[2023-03-16 19:45:27,041] [INFO] [logging.py:68:log_dist] [Rank 0] step=32000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-16 19:45:27,143] [INFO] [timer.py:196:stop] epoch=0/micro_step=32000/global_step=32000, RunningAvgSamplesPerSec=13.976602421074414, CurrSamplesPerSec=14.037498912943494, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.1782, 'learning_rate': 1e-05, 'epoch': 0.8}
+{'eval_loss': 2.175906181335449, 'eval_runtime': 780.7377, 'eval_samples_per_second': 819.738, 'eval_steps_per_second': 1.601, 'epoch': 0.8}
+[2023-03-16 19:59:13,989] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step32000 is begin to save!
+[2023-03-16 19:59:13,995] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-32000/global_step32000/mp_rank_00_model_states.pt
+[2023-03-16 19:59:13,996] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-32000/global_step32000/mp_rank_00_model_states.pt...
+[2023-03-16 19:59:44,072] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-32000/global_step32000/mp_rank_00_model_states.pt.
+[2023-03-16 19:59:44,076] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-32000/global_step32000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-16 19:59:59,438] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-32000/global_step32000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-16 19:59:59,439] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-32000/global_step32000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-16 19:59:59,440] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step32000 is ready now!
+{'loss': 2.1736, 'learning_rate': 1e-05, 'epoch': 0.81}
+{'loss': 2.1754, 'learning_rate': 1e-05, 'epoch': 0.82}
+{'loss': 2.1755, 'learning_rate': 1e-05, 'epoch': 0.84}
+[2023-03-16 22:33:46,193] [INFO] [logging.py:68:log_dist] [Rank 0] step=34000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-16 22:33:46,337] [INFO] [timer.py:196:stop] epoch=0/micro_step=34000/global_step=34000, RunningAvgSamplesPerSec=13.972965741472791, CurrSamplesPerSec=14.141891341927735, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.1712, 'learning_rate': 1e-05, 'epoch': 0.85}
+{'loss': 2.164, 'learning_rate': 1e-05, 'epoch': 0.86}
+{'loss': 2.1786, 'learning_rate': 1e-05, 'epoch': 0.88}
+{'loss': 2.1761, 'learning_rate': 1e-05, 'epoch': 0.89}
+[2023-03-17 01:06:31,603] [INFO] [logging.py:68:log_dist] [Rank 0] step=36000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-17 01:06:31,735] [INFO] [timer.py:196:stop] epoch=0/micro_step=36000/global_step=36000, RunningAvgSamplesPerSec=13.973714657679094, CurrSamplesPerSec=13.816903778336545, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.1725, 'learning_rate': 1e-05, 'epoch': 0.9}
+{'eval_loss': 2.173068046569824, 'eval_runtime': 780.4181, 'eval_samples_per_second': 820.073, 'eval_steps_per_second': 1.602, 'epoch': 0.9}
+[2023-03-17 01:20:07,170] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step36000 is begin to save!
+[2023-03-17 01:20:07,176] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-36000/global_step36000/mp_rank_00_model_states.pt
+[2023-03-17 01:20:07,176] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-36000/global_step36000/mp_rank_00_model_states.pt...
+[2023-03-17 01:20:25,128] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-36000/global_step36000/mp_rank_00_model_states.pt.
+[2023-03-17 01:20:25,132] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-36000/global_step36000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-17 01:20:40,483] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-36000/global_step36000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-17 01:20:40,484] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-36000/global_step36000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-17 01:20:40,484] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step36000 is ready now!
+{'loss': 2.1753, 'learning_rate': 1e-05, 'epoch': 0.91}
+{'loss': 2.1739, 'learning_rate': 1e-05, 'epoch': 0.93}
+{'loss': 2.1732, 'learning_rate': 1e-05, 'epoch': 0.94}
+[2023-03-17 03:54:07,225] [INFO] [logging.py:68:log_dist] [Rank 0] step=38000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-17 03:54:07,451] [INFO] [timer.py:196:stop] epoch=0/micro_step=38000/global_step=38000, RunningAvgSamplesPerSec=13.97207931111581, CurrSamplesPerSec=13.746680402654889, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.1751, 'learning_rate': 1e-05, 'epoch': 0.95}
+{'loss': 2.1653, 'learning_rate': 1e-05, 'epoch': 0.96}
+{'loss': 2.1746, 'learning_rate': 1e-05, 'epoch': 0.97}
+{'loss': 2.1646, 'learning_rate': 1e-05, 'epoch': 0.99}
+[2023-03-17 06:26:53,980] [INFO] [logging.py:68:log_dist] [Rank 0] step=40000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-17 06:26:54,126] [INFO] [timer.py:196:stop] epoch=0/micro_step=40000/global_step=40000, RunningAvgSamplesPerSec=13.972699469291937, CurrSamplesPerSec=13.849446477102212, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 2.1658, 'learning_rate': 1e-05, 'epoch': 1.0}
+{'eval_loss': 2.1706671714782715, 'eval_runtime': 780.6722, 'eval_samples_per_second': 819.806, 'eval_steps_per_second': 1.601, 'epoch': 1.0}
+[2023-03-17 06:40:30,729] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step40000 is begin to save!
+[2023-03-17 06:40:30,735] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-40000/global_step40000/mp_rank_00_model_states.pt
+[2023-03-17 06:40:30,736] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-40000/global_step40000/mp_rank_00_model_states.pt...
+[2023-03-17 06:40:49,327] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-40000/global_step40000/mp_rank_00_model_states.pt.
+[2023-03-17 06:40:49,331] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-40000/global_step40000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-17 06:41:04,323] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-40000/global_step40000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-17 06:41:04,324] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-40000/global_step40000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-17 06:41:04,324] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step40000 is ready now!
+{'loss': 1.8502, 'learning_rate': 1e-05, 'epoch': 1.01}
+{'loss': 1.8469, 'learning_rate': 1e-05, 'epoch': 1.02}
+{'loss': 1.8404, 'learning_rate': 1e-05, 'epoch': 1.04}
+[2023-03-17 09:14:23,930] [INFO] [logging.py:68:log_dist] [Rank 0] step=42000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-17 09:14:24,039] [INFO] [timer.py:196:stop] epoch=0/micro_step=42000/global_step=42000, RunningAvgSamplesPerSec=13.971893950757694, CurrSamplesPerSec=14.278229554669567, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.847, 'learning_rate': 1e-05, 'epoch': 1.05}
+{'loss': 1.8388, 'learning_rate': 1e-05, 'epoch': 1.06}
+{'loss': 1.8454, 'learning_rate': 1e-05, 'epoch': 1.07}
+{'loss': 1.8451, 'learning_rate': 1e-05, 'epoch': 1.09}
+[2023-03-17 11:47:13,574] [INFO] [logging.py:68:log_dist] [Rank 0] step=44000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-17 11:47:13,669] [INFO] [timer.py:196:stop] epoch=0/micro_step=44000/global_step=44000, RunningAvgSamplesPerSec=13.972251094419756, CurrSamplesPerSec=13.951703855468214, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.8426, 'learning_rate': 1e-05, 'epoch': 1.1}
+{'eval_loss': 2.1997828483581543, 'eval_runtime': 781.3913, 'eval_samples_per_second': 819.052, 'eval_steps_per_second': 1.6, 'epoch': 1.1}
+[2023-03-17 12:00:49,922] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step44000 is begin to save!
+[2023-03-17 12:00:49,929] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-44000/global_step44000/mp_rank_00_model_states.pt
+[2023-03-17 12:00:49,930] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-44000/global_step44000/mp_rank_00_model_states.pt...
+[2023-03-17 12:01:08,577] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-44000/global_step44000/mp_rank_00_model_states.pt.
+[2023-03-17 12:01:08,580] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-44000/global_step44000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-17 12:01:23,184] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-44000/global_step44000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-17 12:01:23,185] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-44000/global_step44000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-17 12:01:23,185] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step44000 is ready now!
+{'loss': 1.8414, 'learning_rate': 1e-05, 'epoch': 1.11}
+{'loss': 1.8444, 'learning_rate': 1e-05, 'epoch': 1.12}
+{'loss': 1.8474, 'learning_rate': 1e-05, 'epoch': 1.14}
+[2023-03-17 14:32:45,301] [INFO] [logging.py:68:log_dist] [Rank 0] step=46000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-17 14:32:45,412] [INFO] [timer.py:196:stop] epoch=0/micro_step=46000/global_step=46000, RunningAvgSamplesPerSec=13.978392801219968, CurrSamplesPerSec=14.129385123427879, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.8589, 'learning_rate': 1e-05, 'epoch': 1.15}
+{'loss': 1.8562, 'learning_rate': 1e-05, 'epoch': 1.16}
+{'loss': 1.8552, 'learning_rate': 1e-05, 'epoch': 1.18}
+{'loss': 1.8636, 'learning_rate': 1e-05, 'epoch': 1.19}
+[2023-03-17 17:04:44,002] [INFO] [logging.py:68:log_dist] [Rank 0] step=48000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-17 17:04:44,135] [INFO] [timer.py:196:stop] epoch=0/micro_step=48000/global_step=48000, RunningAvgSamplesPerSec=13.981705677867714, CurrSamplesPerSec=13.971598513460044, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.8583, 'learning_rate': 1e-05, 'epoch': 1.2}
+{'eval_loss': 2.1980366706848145, 'eval_runtime': 781.4247, 'eval_samples_per_second': 819.017, 'eval_steps_per_second': 1.6, 'epoch': 1.2}
+[2023-03-17 17:18:23,492] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step48000 is begin to save!
+[2023-03-17 17:18:23,498] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-48000/global_step48000/mp_rank_00_model_states.pt
+[2023-03-17 17:18:23,498] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-48000/global_step48000/mp_rank_00_model_states.pt...
+[2023-03-17 17:18:41,044] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-48000/global_step48000/mp_rank_00_model_states.pt.
+[2023-03-17 17:18:41,048] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-48000/global_step48000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-17 17:18:56,123] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-48000/global_step48000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-17 17:18:56,124] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-48000/global_step48000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-17 17:18:56,124] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step48000 is ready now!
+{'loss': 1.8605, 'learning_rate': 1e-05, 'epoch': 1.21}
+{'loss': 1.8571, 'learning_rate': 1e-05, 'epoch': 1.23}
+{'loss': 1.8651, 'learning_rate': 1e-05, 'epoch': 1.24}
+[2023-03-17 19:52:19,725] [INFO] [logging.py:68:log_dist] [Rank 0] step=50000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-17 19:52:19,911] [INFO] [timer.py:196:stop] epoch=0/micro_step=50000/global_step=50000, RunningAvgSamplesPerSec=13.980395578902835, CurrSamplesPerSec=13.883855271133879, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.8666, 'learning_rate': 1e-05, 'epoch': 1.25}
+{'loss': 1.8726, 'learning_rate': 1e-05, 'epoch': 1.26}
+{'loss': 1.8641, 'learning_rate': 1e-05, 'epoch': 1.27}
+{'loss': 1.8691, 'learning_rate': 1e-05, 'epoch': 1.29}
+[2023-03-17 22:25:00,853] [INFO] [logging.py:68:log_dist] [Rank 0] step=52000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-17 22:25:00,956] [INFO] [timer.py:196:stop] epoch=0/micro_step=52000/global_step=52000, RunningAvgSamplesPerSec=13.980885084951373, CurrSamplesPerSec=13.831613180672555, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.8627, 'learning_rate': 1e-05, 'epoch': 1.3}
+{'eval_loss': 2.197970390319824, 'eval_runtime': 780.8951, 'eval_samples_per_second': 819.572, 'eval_steps_per_second': 1.601, 'epoch': 1.3}
+[2023-03-17 22:38:39,056] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step52000 is begin to save!
+[2023-03-17 22:38:39,063] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-52000/global_step52000/mp_rank_00_model_states.pt
+[2023-03-17 22:38:39,063] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-52000/global_step52000/mp_rank_00_model_states.pt...
+[2023-03-17 22:38:57,401] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-52000/global_step52000/mp_rank_00_model_states.pt.
+[2023-03-17 22:38:57,406] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-52000/global_step52000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-17 22:39:11,411] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-52000/global_step52000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-17 22:39:11,412] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-52000/global_step52000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-17 22:39:11,413] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step52000 is ready now!
+{'loss': 1.8728, 'learning_rate': 1e-05, 'epoch': 1.31}
+{'loss': 1.8742, 'learning_rate': 1e-05, 'epoch': 1.32}
+{'loss': 1.8738, 'learning_rate': 1e-05, 'epoch': 1.34}
+[2023-03-18 01:12:04,239] [INFO] [logging.py:68:log_dist] [Rank 0] step=54000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-18 01:12:04,334] [INFO] [timer.py:196:stop] epoch=0/micro_step=54000/global_step=54000, RunningAvgSamplesPerSec=13.981691097366094, CurrSamplesPerSec=14.212093084326302, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.8734, 'learning_rate': 1e-05, 'epoch': 1.35}
+{'loss': 1.8811, 'learning_rate': 1e-05, 'epoch': 1.36}
+{'loss': 1.8811, 'learning_rate': 1e-05, 'epoch': 1.38}
+{'loss': 1.8783, 'learning_rate': 1e-05, 'epoch': 1.39}
+[2023-03-18 03:44:31,483] [INFO] [logging.py:68:log_dist] [Rank 0] step=56000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-18 03:44:31,593] [INFO] [timer.py:196:stop] epoch=0/micro_step=56000/global_step=56000, RunningAvgSamplesPerSec=13.982845937889351, CurrSamplesPerSec=13.824183729004332, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.8733, 'learning_rate': 1e-05, 'epoch': 1.4}
+{'eval_loss': 2.1951444149017334, 'eval_runtime': 781.2336, 'eval_samples_per_second': 819.217, 'eval_steps_per_second': 1.6, 'epoch': 1.4}
+[2023-03-18 03:58:07,238] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step56000 is begin to save!
+[2023-03-18 03:58:07,244] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-56000/global_step56000/mp_rank_00_model_states.pt
+[2023-03-18 03:58:07,245] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-56000/global_step56000/mp_rank_00_model_states.pt...
+[2023-03-18 03:58:25,134] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-56000/global_step56000/mp_rank_00_model_states.pt.
+[2023-03-18 03:58:25,138] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-56000/global_step56000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-18 03:58:39,207] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-56000/global_step56000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-18 03:58:39,208] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-56000/global_step56000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-18 03:58:39,209] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step56000 is ready now!
+{'loss': 1.8812, 'learning_rate': 1e-05, 'epoch': 1.41}
+{'loss': 1.8817, 'learning_rate': 1e-05, 'epoch': 1.43}
+{'loss': 1.8827, 'learning_rate': 1e-05, 'epoch': 1.44}
+[2023-03-18 06:32:03,895] [INFO] [logging.py:68:log_dist] [Rank 0] step=58000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-18 06:32:04,014] [INFO] [timer.py:196:stop] epoch=0/micro_step=58000/global_step=58000, RunningAvgSamplesPerSec=13.981820488459544, CurrSamplesPerSec=13.98823913311053, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.8879, 'learning_rate': 1e-05, 'epoch': 1.45}
+{'loss': 1.8877, 'learning_rate': 1e-05, 'epoch': 1.46}
+{'loss': 1.8907, 'learning_rate': 1e-05, 'epoch': 1.48}
+{'loss': 1.8853, 'learning_rate': 1e-05, 'epoch': 1.49}
+[2023-03-18 09:04:29,565] [INFO] [logging.py:68:log_dist] [Rank 0] step=60000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-18 09:04:29,689] [INFO] [timer.py:196:stop] epoch=0/micro_step=60000/global_step=60000, RunningAvgSamplesPerSec=13.982975424217726, CurrSamplesPerSec=13.908386203521932, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.8937, 'learning_rate': 1e-05, 'epoch': 1.5}
+{'eval_loss': 2.19460391998291, 'eval_runtime': 781.2144, 'eval_samples_per_second': 819.237, 'eval_steps_per_second': 1.6, 'epoch': 1.5}
+[2023-03-18 09:18:05,983] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step60000 is begin to save!
+[2023-03-18 09:18:05,989] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-60000/global_step60000/mp_rank_00_model_states.pt
+[2023-03-18 09:18:05,989] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-60000/global_step60000/mp_rank_00_model_states.pt...
+[2023-03-18 09:18:24,299] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-60000/global_step60000/mp_rank_00_model_states.pt.
+[2023-03-18 09:18:24,303] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-60000/global_step60000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-18 09:18:39,158] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-60000/global_step60000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-18 09:18:39,159] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-60000/global_step60000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-18 09:18:39,159] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step60000 is ready now!
+{'loss': 1.889, 'learning_rate': 1e-05, 'epoch': 1.51}
+{'loss': 1.896, 'learning_rate': 1e-05, 'epoch': 1.52}
+{'loss': 1.8941, 'learning_rate': 1e-05, 'epoch': 1.54}
+[2023-03-18 11:52:17,917] [INFO] [logging.py:68:log_dist] [Rank 0] step=62000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-18 11:52:18,130] [INFO] [timer.py:196:stop] epoch=0/micro_step=62000/global_step=62000, RunningAvgSamplesPerSec=13.981074611022166, CurrSamplesPerSec=13.624262723515107, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.8857, 'learning_rate': 1e-05, 'epoch': 1.55}
+{'loss': 1.8963, 'learning_rate': 1e-05, 'epoch': 1.56}
+{'loss': 1.8965, 'learning_rate': 1e-05, 'epoch': 1.57}
+{'loss': 1.8982, 'learning_rate': 1e-05, 'epoch': 1.59}
+[2023-03-18 14:25:34,011] [INFO] [logging.py:68:log_dist] [Rank 0] step=64000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-18 14:25:34,207] [INFO] [timer.py:196:stop] epoch=0/micro_step=64000/global_step=64000, RunningAvgSamplesPerSec=13.979765128108106, CurrSamplesPerSec=14.075569637888778, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.8943, 'learning_rate': 1e-05, 'epoch': 1.6}
+{'eval_loss': 2.197676658630371, 'eval_runtime': 781.3355, 'eval_samples_per_second': 819.11, 'eval_steps_per_second': 1.6, 'epoch': 1.6}
+[2023-03-18 14:39:23,373] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step64000 is begin to save!
+[2023-03-18 14:39:23,380] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-64000/global_step64000/mp_rank_00_model_states.pt
+[2023-03-18 14:39:23,380] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-64000/global_step64000/mp_rank_00_model_states.pt...
+[2023-03-18 14:39:56,260] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-64000/global_step64000/mp_rank_00_model_states.pt.
+[2023-03-18 14:39:56,265] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-64000/global_step64000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-18 14:40:10,504] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-64000/global_step64000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-18 14:40:10,506] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-64000/global_step64000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-18 14:40:10,506] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step64000 is ready now!
+{'loss': 1.8984, 'learning_rate': 1e-05, 'epoch': 1.61}
+{'loss': 1.8968, 'learning_rate': 1e-05, 'epoch': 1.62}
+{'loss': 1.9022, 'learning_rate': 1e-05, 'epoch': 1.64}
+[2023-03-18 17:14:07,875] [INFO] [logging.py:68:log_dist] [Rank 0] step=66000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-18 17:14:07,983] [INFO] [timer.py:196:stop] epoch=0/micro_step=66000/global_step=66000, RunningAvgSamplesPerSec=13.977498608240694, CurrSamplesPerSec=14.192094873571428, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.9046, 'learning_rate': 1e-05, 'epoch': 1.65}
+{'loss': 1.9057, 'learning_rate': 1e-05, 'epoch': 1.66}
+{'loss': 1.9083, 'learning_rate': 1e-05, 'epoch': 1.68}
+{'loss': 1.9044, 'learning_rate': 1e-05, 'epoch': 1.69}
+[2023-03-18 19:47:27,960] [INFO] [logging.py:68:log_dist] [Rank 0] step=68000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-18 19:47:28,085] [INFO] [timer.py:196:stop] epoch=0/micro_step=68000/global_step=68000, RunningAvgSamplesPerSec=13.976192669155067, CurrSamplesPerSec=13.662072256505219, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.9058, 'learning_rate': 1e-05, 'epoch': 1.7}
+{'eval_loss': 2.194600820541382, 'eval_runtime': 780.9443, 'eval_samples_per_second': 819.521, 'eval_steps_per_second': 1.601, 'epoch': 1.7}
+[2023-03-18 20:01:16,052] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step68000 is begin to save!
+[2023-03-18 20:01:16,058] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-68000/global_step68000/mp_rank_00_model_states.pt
+[2023-03-18 20:01:16,058] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-68000/global_step68000/mp_rank_00_model_states.pt...
+[2023-03-18 20:01:34,010] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-68000/global_step68000/mp_rank_00_model_states.pt.
+[2023-03-18 20:01:34,015] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-68000/global_step68000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-18 20:01:47,893] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-68000/global_step68000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-18 20:01:47,895] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-68000/global_step68000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-18 20:01:47,895] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step68000 is ready now!
+{'loss': 1.9061, 'learning_rate': 1e-05, 'epoch': 1.71}
+{'loss': 1.9016, 'learning_rate': 1e-05, 'epoch': 1.73}
+{'loss': 1.9085, 'learning_rate': 1e-05, 'epoch': 1.74}
+[2023-03-18 22:35:57,352] [INFO] [logging.py:68:log_dist] [Rank 0] step=70000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-18 22:35:57,451] [INFO] [timer.py:196:stop] epoch=0/micro_step=70000/global_step=70000, RunningAvgSamplesPerSec=13.97345077655863, CurrSamplesPerSec=13.98090337935363, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.9133, 'learning_rate': 1e-05, 'epoch': 1.75}
+{'loss': 1.9061, 'learning_rate': 1e-05, 'epoch': 1.76}
+{'loss': 1.9127, 'learning_rate': 1e-05, 'epoch': 1.77}
+{'loss': 1.9104, 'learning_rate': 1e-05, 'epoch': 1.79}
+[2023-03-19 01:09:33,744] [INFO] [logging.py:68:log_dist] [Rank 0] step=72000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-19 01:09:33,838] [INFO] [timer.py:196:stop] epoch=0/micro_step=72000/global_step=72000, RunningAvgSamplesPerSec=13.971653230465733, CurrSamplesPerSec=14.105004403028056, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.9139, 'learning_rate': 1e-05, 'epoch': 1.8}
+{'eval_loss': 2.1908819675445557, 'eval_runtime': 780.6343, 'eval_samples_per_second': 819.846, 'eval_steps_per_second': 1.601, 'epoch': 1.8}
+[2023-03-19 01:23:08,319] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step72000 is begin to save!
+[2023-03-19 01:23:08,325] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-72000/global_step72000/mp_rank_00_model_states.pt
+[2023-03-19 01:23:08,325] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-72000/global_step72000/mp_rank_00_model_states.pt...
+[2023-03-19 01:23:25,287] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-72000/global_step72000/mp_rank_00_model_states.pt.
+[2023-03-19 01:23:25,291] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-72000/global_step72000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-19 01:23:39,949] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-72000/global_step72000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-19 01:23:39,950] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-72000/global_step72000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-19 01:23:39,950] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step72000 is ready now!
+{'loss': 1.9151, 'learning_rate': 1e-05, 'epoch': 1.81}
+{'loss': 1.9196, 'learning_rate': 1e-05, 'epoch': 1.82}
+{'loss': 1.9119, 'learning_rate': 1e-05, 'epoch': 1.84}
+[2023-03-19 03:57:45,827] [INFO] [logging.py:68:log_dist] [Rank 0] step=74000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-19 03:57:45,947] [INFO] [timer.py:196:stop] epoch=0/micro_step=74000/global_step=74000, RunningAvgSamplesPerSec=13.969260270170842, CurrSamplesPerSec=13.884505893256321, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.9149, 'learning_rate': 1e-05, 'epoch': 1.85}
+{'loss': 1.9183, 'learning_rate': 1e-05, 'epoch': 1.86}
+{'loss': 1.9179, 'learning_rate': 1e-05, 'epoch': 1.88}
+{'loss': 1.9202, 'learning_rate': 1e-05, 'epoch': 1.89}
+[2023-03-19 06:31:33,351] [INFO] [logging.py:68:log_dist] [Rank 0] step=76000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-19 06:31:33,461] [INFO] [timer.py:196:stop] epoch=0/micro_step=76000/global_step=76000, RunningAvgSamplesPerSec=13.967218018885319, CurrSamplesPerSec=14.055592894883288, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.9178, 'learning_rate': 1e-05, 'epoch': 1.9}
+{'eval_loss': 2.1880030632019043, 'eval_runtime': 781.222, 'eval_samples_per_second': 819.229, 'eval_steps_per_second': 1.6, 'epoch': 1.9}
+[2023-03-19 06:45:15,092] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step76000 is begin to save!
+[2023-03-19 06:45:15,099] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-76000/global_step76000/mp_rank_00_model_states.pt
+[2023-03-19 06:45:15,099] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-76000/global_step76000/mp_rank_00_model_states.pt...
+[2023-03-19 06:45:34,993] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-76000/global_step76000/mp_rank_00_model_states.pt.
+[2023-03-19 06:45:34,996] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-76000/global_step76000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-19 06:45:48,304] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-76000/global_step76000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-19 06:45:48,305] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-76000/global_step76000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-19 06:45:48,306] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step76000 is ready now!
+{'loss': 1.9194, 'learning_rate': 1e-05, 'epoch': 1.91}
+{'loss': 1.9229, 'learning_rate': 1e-05, 'epoch': 1.93}
+{'loss': 1.922, 'learning_rate': 1e-05, 'epoch': 1.94}
+[2023-03-19 09:20:09,129] [INFO] [logging.py:68:log_dist] [Rank 0] step=78000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-19 09:20:09,260] [INFO] [timer.py:196:stop] epoch=0/micro_step=78000/global_step=78000, RunningAvgSamplesPerSec=13.964612247966542, CurrSamplesPerSec=14.01836351061192, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.9199, 'learning_rate': 1e-05, 'epoch': 1.95}
+{'loss': 1.9211, 'learning_rate': 1e-05, 'epoch': 1.96}
+{'loss': 1.926, 'learning_rate': 1e-05, 'epoch': 1.98}
+{'loss': 1.9281, 'learning_rate': 1e-05, 'epoch': 1.99}
+[2023-03-19 11:53:51,060] [INFO] [logging.py:68:log_dist] [Rank 0] step=80000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-19 11:53:51,220] [INFO] [timer.py:196:stop] epoch=0/micro_step=80000/global_step=80000, RunningAvgSamplesPerSec=13.96300319307086, CurrSamplesPerSec=13.868528730540579, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.9235, 'learning_rate': 1e-05, 'epoch': 2.0}
+{'eval_loss': 2.1903867721557617, 'eval_runtime': 780.567, 'eval_samples_per_second': 819.917, 'eval_steps_per_second': 1.601, 'epoch': 2.0}
+[2023-03-19 12:07:27,772] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step80000 is begin to save!
+[2023-03-19 12:07:27,778] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-80000/global_step80000/mp_rank_00_model_states.pt
+[2023-03-19 12:07:27,778] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-80000/global_step80000/mp_rank_00_model_states.pt...
+[2023-03-19 12:07:45,192] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-80000/global_step80000/mp_rank_00_model_states.pt.
+[2023-03-19 12:07:45,195] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-80000/global_step80000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-19 12:08:00,295] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-80000/global_step80000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-19 12:08:00,296] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-80000/global_step80000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-19 12:08:00,297] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step80000 is ready now!
+{'loss': 1.4946, 'learning_rate': 1e-05, 'epoch': 2.01}
+{'loss': 1.4839, 'learning_rate': 1e-05, 'epoch': 2.02}
+{'loss': 1.4792, 'learning_rate': 1e-05, 'epoch': 2.04}
+[2023-03-19 14:42:28,928] [INFO] [logging.py:68:log_dist] [Rank 0] step=82000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-19 14:42:29,030] [INFO] [timer.py:196:stop] epoch=0/micro_step=82000/global_step=82000, RunningAvgSamplesPerSec=13.960305104427992, CurrSamplesPerSec=13.856609129586937, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.4849, 'learning_rate': 1e-05, 'epoch': 2.05}
+{'loss': 1.4809, 'learning_rate': 1e-05, 'epoch': 2.06}
+{'loss': 1.4853, 'learning_rate': 1e-05, 'epoch': 2.08}
+{'loss': 1.4889, 'learning_rate': 1e-05, 'epoch': 2.09}
+[2023-03-19 17:16:23,253] [INFO] [logging.py:68:log_dist] [Rank 0] step=84000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-19 17:16:23,391] [INFO] [timer.py:196:stop] epoch=0/micro_step=84000/global_step=84000, RunningAvgSamplesPerSec=13.958415940294252, CurrSamplesPerSec=13.79487236674919, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.4922, 'learning_rate': 1e-05, 'epoch': 2.1}
+{'eval_loss': 2.3023459911346436, 'eval_runtime': 781.0427, 'eval_samples_per_second': 819.417, 'eval_steps_per_second': 1.6, 'epoch': 2.1}
+[2023-03-19 17:30:11,194] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step84000 is begin to save!
+[2023-03-19 17:30:11,200] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-84000/global_step84000/mp_rank_00_model_states.pt
+[2023-03-19 17:30:11,201] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-84000/global_step84000/mp_rank_00_model_states.pt...
+[2023-03-19 17:30:39,641] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-84000/global_step84000/mp_rank_00_model_states.pt.
+[2023-03-19 17:30:39,645] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-84000/global_step84000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-19 17:30:54,573] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-84000/global_step84000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-19 17:30:54,574] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-84000/global_step84000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-19 17:30:54,574] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step84000 is ready now!
+{'loss': 1.49, 'learning_rate': 1e-05, 'epoch': 2.11}
+{'loss': 1.4928, 'learning_rate': 1e-05, 'epoch': 2.12}
+{'loss': 1.4967, 'learning_rate': 1e-05, 'epoch': 2.14}
+[2023-03-19 20:05:09,626] [INFO] [logging.py:68:log_dist] [Rank 0] step=86000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-19 20:05:09,770] [INFO] [timer.py:196:stop] epoch=0/micro_step=86000/global_step=86000, RunningAvgSamplesPerSec=13.956370423604783, CurrSamplesPerSec=13.897251989855725, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.4943, 'learning_rate': 1e-05, 'epoch': 2.15}
+{'loss': 1.5029, 'learning_rate': 1e-05, 'epoch': 2.16}
+{'loss': 1.5023, 'learning_rate': 1e-05, 'epoch': 2.17}
+{'loss': 1.5044, 'learning_rate': 1e-05, 'epoch': 2.19}
+[2023-03-19 22:38:55,280] [INFO] [logging.py:68:log_dist] [Rank 0] step=88000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-19 22:38:55,412] [INFO] [timer.py:196:stop] epoch=0/micro_step=88000/global_step=88000, RunningAvgSamplesPerSec=13.954967776636922, CurrSamplesPerSec=13.888949131923399, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.5101, 'learning_rate': 1e-05, 'epoch': 2.2}
+{'eval_loss': 2.3039329051971436, 'eval_runtime': 781.027, 'eval_samples_per_second': 819.434, 'eval_steps_per_second': 1.6, 'epoch': 2.2}
+[2023-03-19 22:52:49,859] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step88000 is begin to save!
+[2023-03-19 22:52:49,865] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-88000/global_step88000/mp_rank_00_model_states.pt
+[2023-03-19 22:52:49,866] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-88000/global_step88000/mp_rank_00_model_states.pt...
+[2023-03-19 22:53:18,942] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-88000/global_step88000/mp_rank_00_model_states.pt.
+[2023-03-19 22:53:18,946] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-88000/global_step88000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-19 22:53:33,745] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-88000/global_step88000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-19 22:53:33,747] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-88000/global_step88000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-19 22:53:33,747] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step88000 is ready now!
+{'loss': 1.5117, 'learning_rate': 1e-05, 'epoch': 2.21}
+{'loss': 1.5153, 'learning_rate': 1e-05, 'epoch': 2.23}
+{'loss': 1.5159, 'learning_rate': 1e-05, 'epoch': 2.24}
+[2023-03-20 01:27:57,410] [INFO] [logging.py:68:log_dist] [Rank 0] step=90000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-20 01:27:57,525] [INFO] [timer.py:196:stop] epoch=0/micro_step=90000/global_step=90000, RunningAvgSamplesPerSec=13.952783169186196, CurrSamplesPerSec=14.049286279046557, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.5172, 'learning_rate': 1e-05, 'epoch': 2.25}
+{'loss': 1.5196, 'learning_rate': 1e-05, 'epoch': 2.26}
+{'loss': 1.5287, 'learning_rate': 1e-05, 'epoch': 2.27}
+{'loss': 1.5326, 'learning_rate': 1e-05, 'epoch': 2.29}
+[2023-03-20 04:01:45,376] [INFO] [logging.py:68:log_dist] [Rank 0] step=92000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-20 04:01:45,487] [INFO] [timer.py:196:stop] epoch=0/micro_step=92000/global_step=92000, RunningAvgSamplesPerSec=13.951448951009178, CurrSamplesPerSec=13.55841313169996, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.5275, 'learning_rate': 1e-05, 'epoch': 2.3}
+{'eval_loss': 2.304441452026367, 'eval_runtime': 780.3944, 'eval_samples_per_second': 820.098, 'eval_steps_per_second': 1.602, 'epoch': 2.3}
+[2023-03-20 04:15:23,065] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step92000 is begin to save!
+[2023-03-20 04:15:23,071] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-92000/global_step92000/mp_rank_00_model_states.pt
+[2023-03-20 04:15:23,071] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-92000/global_step92000/mp_rank_00_model_states.pt...
+[2023-03-20 04:15:42,766] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-92000/global_step92000/mp_rank_00_model_states.pt.
+[2023-03-20 04:15:42,770] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-92000/global_step92000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-20 04:15:57,154] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-92000/global_step92000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-20 04:15:57,156] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-92000/global_step92000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-20 04:15:57,157] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step92000 is ready now!
+{'loss': 1.5352, 'learning_rate': 1e-05, 'epoch': 2.31}
+{'loss': 1.5372, 'learning_rate': 1e-05, 'epoch': 2.33}
+{'loss': 1.5416, 'learning_rate': 1e-05, 'epoch': 2.34}
+[2023-03-20 06:50:16,987] [INFO] [logging.py:68:log_dist] [Rank 0] step=94000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-20 06:50:17,181] [INFO] [timer.py:196:stop] epoch=0/micro_step=94000/global_step=94000, RunningAvgSamplesPerSec=13.949594854081946, CurrSamplesPerSec=13.961978502641399, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.5367, 'learning_rate': 1e-05, 'epoch': 2.35}
+{'loss': 1.5418, 'learning_rate': 1e-05, 'epoch': 2.36}
+{'loss': 1.5455, 'learning_rate': 1e-05, 'epoch': 2.38}
+{'loss': 1.5483, 'learning_rate': 1e-05, 'epoch': 2.39}
+[2023-03-20 09:24:05,307] [INFO] [logging.py:68:log_dist] [Rank 0] step=96000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-20 09:24:05,447] [INFO] [timer.py:196:stop] epoch=0/micro_step=96000/global_step=96000, RunningAvgSamplesPerSec=13.948374730946076, CurrSamplesPerSec=14.168273634932026, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.5444, 'learning_rate': 1e-05, 'epoch': 2.4}
+{'eval_loss': 2.2974374294281006, 'eval_runtime': 780.9954, 'eval_samples_per_second': 819.467, 'eval_steps_per_second': 1.601, 'epoch': 2.4}
+[2023-03-20 09:37:41,507] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step96000 is begin to save!
+[2023-03-20 09:37:41,513] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-96000/global_step96000/mp_rank_00_model_states.pt
+[2023-03-20 09:37:41,513] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-96000/global_step96000/mp_rank_00_model_states.pt...
+[2023-03-20 09:37:59,129] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-96000/global_step96000/mp_rank_00_model_states.pt.
+[2023-03-20 09:37:59,133] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-96000/global_step96000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-20 09:38:14,157] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-96000/global_step96000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-20 09:38:14,158] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-96000/global_step96000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-20 09:38:14,158] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step96000 is ready now!
+{'loss': 1.5506, 'learning_rate': 1e-05, 'epoch': 2.41}
+{'loss': 1.5514, 'learning_rate': 1e-05, 'epoch': 2.42}
+{'loss': 1.5543, 'learning_rate': 1e-05, 'epoch': 2.44}
+[2023-03-20 12:12:33,402] [INFO] [logging.py:68:log_dist] [Rank 0] step=98000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-20 12:12:33,628] [INFO] [timer.py:196:stop] epoch=0/micro_step=98000/global_step=98000, RunningAvgSamplesPerSec=13.946631619251143, CurrSamplesPerSec=13.810632566387106, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.5576, 'learning_rate': 1e-05, 'epoch': 2.45}
+{'loss': 1.5566, 'learning_rate': 1e-05, 'epoch': 2.46}
+{'loss': 1.5646, 'learning_rate': 1e-05, 'epoch': 2.48}
+{'loss': 1.5647, 'learning_rate': 1e-05, 'epoch': 2.49}
+[2023-03-20 14:46:18,623] [INFO] [logging.py:68:log_dist] [Rank 0] step=100000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-20 14:46:18,778] [INFO] [timer.py:196:stop] epoch=0/micro_step=100000/global_step=100000, RunningAvgSamplesPerSec=13.945607853387576, CurrSamplesPerSec=13.72671099849604, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.5675, 'learning_rate': 1e-05, 'epoch': 2.5}
+{'eval_loss': 2.296318769454956, 'eval_runtime': 780.8814, 'eval_samples_per_second': 819.587, 'eval_steps_per_second': 1.601, 'epoch': 2.5}
+[2023-03-20 14:59:56,356] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step100000 is begin to save!
+[2023-03-20 14:59:56,362] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-100000/global_step100000/mp_rank_00_model_states.pt
+[2023-03-20 14:59:56,362] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-100000/global_step100000/mp_rank_00_model_states.pt...
+[2023-03-20 15:00:14,301] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-100000/global_step100000/mp_rank_00_model_states.pt.
+[2023-03-20 15:00:14,305] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-100000/global_step100000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-20 15:00:28,789] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-100000/global_step100000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-20 15:00:28,790] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-100000/global_step100000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-20 15:00:28,790] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step100000 is ready now!
+{'loss': 1.564, 'learning_rate': 1e-05, 'epoch': 2.51}
+{'loss': 1.5736, 'learning_rate': 1e-05, 'epoch': 2.52}
+{'loss': 1.5689, 'learning_rate': 1e-05, 'epoch': 2.54}
+[2023-03-20 17:34:32,097] [INFO] [logging.py:68:log_dist] [Rank 0] step=102000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-20 17:34:32,257] [INFO] [timer.py:196:stop] epoch=0/micro_step=102000/global_step=102000, RunningAvgSamplesPerSec=13.944463600635277, CurrSamplesPerSec=14.060593362474656, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.5743, 'learning_rate': 1e-05, 'epoch': 2.55}
+{'loss': 1.5722, 'learning_rate': 1e-05, 'epoch': 2.56}
+{'loss': 1.5772, 'learning_rate': 1e-05, 'epoch': 2.58}
+{'loss': 1.5783, 'learning_rate': 1e-05, 'epoch': 2.59}
+[2023-03-20 20:08:04,668] [INFO] [logging.py:68:log_dist] [Rank 0] step=104000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-20 20:08:04,860] [INFO] [timer.py:196:stop] epoch=0/micro_step=104000/global_step=104000, RunningAvgSamplesPerSec=13.943890062338301, CurrSamplesPerSec=13.768198574800119, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.5832, 'learning_rate': 1e-05, 'epoch': 2.6}
+{'eval_loss': 2.2972304821014404, 'eval_runtime': 781.448, 'eval_samples_per_second': 818.992, 'eval_steps_per_second': 1.6, 'epoch': 2.6}
+[2023-03-20 20:22:20,879] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step104000 is begin to save!
+[2023-03-20 20:22:20,886] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-104000/global_step104000/mp_rank_00_model_states.pt
+[2023-03-20 20:22:20,886] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-104000/global_step104000/mp_rank_00_model_states.pt...
+[2023-03-20 20:22:48,831] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-104000/global_step104000/mp_rank_00_model_states.pt.
+[2023-03-20 20:22:48,835] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-104000/global_step104000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-20 20:23:03,725] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-104000/global_step104000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-20 20:23:03,726] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-104000/global_step104000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-20 20:23:03,727] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step104000 is ready now!
+{'loss': 1.586, 'learning_rate': 1e-05, 'epoch': 2.61}
+{'loss': 1.5886, 'learning_rate': 1e-05, 'epoch': 2.62}
+{'loss': 1.5828, 'learning_rate': 1e-05, 'epoch': 2.64}
+[2023-03-20 22:57:09,988] [INFO] [logging.py:68:log_dist] [Rank 0] step=106000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-20 22:57:10,116] [INFO] [timer.py:196:stop] epoch=0/micro_step=106000/global_step=106000, RunningAvgSamplesPerSec=13.942783447379771, CurrSamplesPerSec=13.69791383935745, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.5897, 'learning_rate': 1e-05, 'epoch': 2.65}
+{'loss': 1.589, 'learning_rate': 1e-05, 'epoch': 2.66}
+{'loss': 1.5931, 'learning_rate': 1e-05, 'epoch': 2.67}
+{'loss': 1.5913, 'learning_rate': 1e-05, 'epoch': 2.69}
+[2023-03-21 01:30:40,581] [INFO] [logging.py:68:log_dist] [Rank 0] step=108000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-21 01:30:40,765] [INFO] [timer.py:196:stop] epoch=0/micro_step=108000/global_step=108000, RunningAvgSamplesPerSec=13.942326697250095, CurrSamplesPerSec=13.899421557009072, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.5941, 'learning_rate': 1e-05, 'epoch': 2.7}
+{'eval_loss': 2.2876882553100586, 'eval_runtime': 780.2123, 'eval_samples_per_second': 820.29, 'eval_steps_per_second': 1.602, 'epoch': 2.7}
+[2023-03-21 01:44:21,516] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step108000 is begin to save!
+[2023-03-21 01:44:21,522] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-108000/global_step108000/mp_rank_00_model_states.pt
+[2023-03-21 01:44:21,523] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-108000/global_step108000/mp_rank_00_model_states.pt...
+[2023-03-21 01:44:44,715] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-108000/global_step108000/mp_rank_00_model_states.pt.
+[2023-03-21 01:44:44,719] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-108000/global_step108000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-21 01:44:59,502] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-108000/global_step108000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-21 01:44:59,503] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-108000/global_step108000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-21 01:44:59,503] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step108000 is ready now!
+{'loss': 1.5986, 'learning_rate': 1e-05, 'epoch': 2.71}
+{'loss': 1.6019, 'learning_rate': 1e-05, 'epoch': 2.73}
+{'loss': 1.6015, 'learning_rate': 1e-05, 'epoch': 2.74}
+[2023-03-21 04:19:01,677] [INFO] [logging.py:68:log_dist] [Rank 0] step=110000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-21 04:19:01,847] [INFO] [timer.py:196:stop] epoch=0/micro_step=110000/global_step=110000, RunningAvgSamplesPerSec=13.941423840035927, CurrSamplesPerSec=13.831897553185355, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.6047, 'learning_rate': 1e-05, 'epoch': 2.75}
+{'loss': 1.6071, 'learning_rate': 1e-05, 'epoch': 2.76}
+{'loss': 1.6114, 'learning_rate': 1e-05, 'epoch': 2.77}
+{'loss': 1.6095, 'learning_rate': 1e-05, 'epoch': 2.79}
+[2023-03-21 06:52:41,884] [INFO] [logging.py:68:log_dist] [Rank 0] step=112000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-21 06:52:42,001] [INFO] [timer.py:196:stop] epoch=0/micro_step=112000/global_step=112000, RunningAvgSamplesPerSec=13.940740763181152, CurrSamplesPerSec=14.166103061463637, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.6069, 'learning_rate': 1e-05, 'epoch': 2.8}
+{'eval_loss': 2.2866218090057373, 'eval_runtime': 780.4043, 'eval_samples_per_second': 820.088, 'eval_steps_per_second': 1.602, 'epoch': 2.8}
+[2023-03-21 07:06:22,237] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step112000 is begin to save!
+[2023-03-21 07:06:22,244] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-112000/global_step112000/mp_rank_00_model_states.pt
+[2023-03-21 07:06:22,244] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-112000/global_step112000/mp_rank_00_model_states.pt...
+[2023-03-21 07:06:41,501] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-112000/global_step112000/mp_rank_00_model_states.pt.
+[2023-03-21 07:06:41,505] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-112000/global_step112000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-21 07:06:56,174] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-112000/global_step112000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-21 07:06:56,175] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-112000/global_step112000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-21 07:06:56,176] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step112000 is ready now!
+{'loss': 1.611, 'learning_rate': 1e-05, 'epoch': 2.81}
+{'loss': 1.6123, 'learning_rate': 1e-05, 'epoch': 2.83}
+{'loss': 1.6111, 'learning_rate': 1e-05, 'epoch': 2.84}
+[2023-03-21 09:39:04,933] [INFO] [logging.py:68:log_dist] [Rank 0] step=114000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-21 09:39:05,070] [INFO] [timer.py:196:stop] epoch=0/micro_step=114000/global_step=114000, RunningAvgSamplesPerSec=13.942896465920326, CurrSamplesPerSec=14.344180337036233, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.6152, 'learning_rate': 1e-05, 'epoch': 2.85}
+{'loss': 1.616, 'learning_rate': 1e-05, 'epoch': 2.86}
+{'loss': 1.621, 'learning_rate': 1e-05, 'epoch': 2.88}
+{'loss': 1.6163, 'learning_rate': 1e-05, 'epoch': 2.89}
+[2023-03-21 12:10:11,516] [INFO] [logging.py:68:log_dist] [Rank 0] step=116000, skipped=0, lr=[1e-05], mom=[[0.9, 0.999]]
+[2023-03-21 12:10:11,621] [INFO] [timer.py:196:stop] epoch=0/micro_step=116000/global_step=116000, RunningAvgSamplesPerSec=13.946229322841326, CurrSamplesPerSec=14.073510011895893, MemAllocated=11.76GB, MaxMemAllocated=49.02GB
+{'loss': 1.6262, 'learning_rate': 1e-05, 'epoch': 2.9}
+{'eval_loss': 2.2868781089782715, 'eval_runtime': 780.4204, 'eval_samples_per_second': 820.071, 'eval_steps_per_second': 1.602, 'epoch': 2.9}
+[2023-03-21 12:23:53,746] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step116000 is begin to save!
+[2023-03-21 12:23:53,752] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: finetuned_100k/checkpoint-116000/global_step116000/mp_rank_00_model_states.pt
+[2023-03-21 12:23:53,752] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-116000/global_step116000/mp_rank_00_model_states.pt...
+[2023-03-21 12:24:13,280] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-116000/global_step116000/mp_rank_00_model_states.pt.
+[2023-03-21 12:24:13,284] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving finetuned_100k/checkpoint-116000/global_step116000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[2023-03-21 12:24:28,569] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved finetuned_100k/checkpoint-116000/global_step116000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[2023-03-21 12:24:28,570] [INFO] [engine.py:3397:_save_zero_checkpoint] zero checkpoint saved finetuned_100k/checkpoint-116000/global_step116000/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+[2023-03-21 12:24:28,570] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step116000 is ready now!
+{'loss': 1.6269, 'learning_rate': 1e-05, 'epoch': 2.91}
+{'loss': 1.631, 'learning_rate': 1e-05, 'epoch': 2.92}
